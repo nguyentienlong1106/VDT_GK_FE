@@ -1,0 +1,38 @@
+.table {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  border-spacing: 0;
+  border: 1px solid #ddd;
+  width: 100%;
+  font-size: calc(8px + 2vmin);
+  table-layout: auto;
+  overflow-x: auto;
+  border-radius: 15px;
+}
+
+.table thead th {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background-color: rgb(167, 165, 165);
+  color: #f2f2f2;
+}
+
+.table th,
+.table td {
+  padding-inline: 10px;
+}
+
+.table tbody tr:hover {
+  background-color: rgb(170, 169, 169);
+  color: #dddddd;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.actions svg {
+  cursor: pointer;
+}
