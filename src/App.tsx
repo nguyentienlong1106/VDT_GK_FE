@@ -18,7 +18,7 @@ function App() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(process.env.BARE_URI!);
+        const response = await fetch(process.env.REACT_APP_API_KEY!);
         const students: Student[] = await response.json();
         setData(students);
       } catch (e) {
@@ -31,7 +31,7 @@ function App() {
   const handleDeleteRow = async (targetIndex: number) => {
     const rowToDelete = data[targetIndex];
     try {
-      await fetch(`${process.env.BARE_URI!}/${rowToDelete._id}`, {
+      await fetch(`${process.env.REACT_APP_API_KEY!}/${rowToDelete._id}`, {
         method: "DELETE",
       });
 
@@ -46,7 +46,7 @@ function App() {
   const handleSubmit = async (newRow: Student) => {
     if (rowToEdit === null) {
       try {
-        const response = await fetch(`${process.env.BARE_URI!}/add`, {
+        const response = await fetch(`${process.env.REACT_APP_API_KEY!}/add`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -61,7 +61,7 @@ function App() {
       }
     } else {
       try {
-        await fetch(`${process.env.BARE_URI!}/${newRow._id}`, {
+        await fetch(`${process.env.REACT_APP_API_KEY!}/${newRow._id}`, {
           method: "PUT",
           headers: {
             "Content-Type": "application/json",
@@ -69,7 +69,7 @@ function App() {
           body: JSON.stringify(newRow),
         });
 
-        const response = await fetch(process.env.BARE_URI!);
+        const response = await fetch(process.env.REACT_APP_API_KEY!);
         const students: Student[] = await response.json();
         setData(students);
       } catch (e) {
