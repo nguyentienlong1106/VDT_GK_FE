@@ -18,7 +18,7 @@ function App() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("http://localhost:8000/students");
+        const response = await fetch(process.env.BARE_URI!);
         const students: Student[] = await response.json();
         setData(students);
       } catch (e) {
@@ -31,7 +31,7 @@ function App() {
   const handleDeleteRow = async (targetIndex: number) => {
     const rowToDelete = data[targetIndex];
     try {
-      await fetch(`http://localhost:8000/students/${rowToDelete._id}`, {
+      await fetch(`${process.env.BARE_URI!}/${rowToDelete._id}`, {
         method: "DELETE",
       });
 
@@ -46,7 +46,7 @@ function App() {
   const handleSubmit = async (newRow: Student) => {
     if (rowToEdit === null) {
       try {
-        const response = await fetch("http://localhost:8000/students/add", {
+        const response = await fetch(`${process.env.BARE_URI!}/add`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -61,7 +61,7 @@ function App() {
       }
     } else {
       try {
-        await fetch(`http://localhost:8000/students/${newRow._id}`, {
+        await fetch(`${process.env.BARE_URI!}/${newRow._id}`, {
           method: "PUT",
           headers: {
             "Content-Type": "application/json",
@@ -69,7 +69,7 @@ function App() {
           body: JSON.stringify(newRow),
         });
 
-        const response = await fetch("http://localhost:8000/students");
+        const response = await fetch(process.env.BARE_URI!);
         const students: Student[] = await response.json();
         setData(students);
       } catch (e) {
