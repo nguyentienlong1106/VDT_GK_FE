@@ -26,7 +26,7 @@ jobs:
 
       - name: Extract tag name
         id: extract_tag
-        run: echo "TAG_NAME=${GITHUB_REF#refs/tags/}" >> $GITHUB_ENV
+        run: echo "TAG_NAME=${GITHUB_REF##*/}" >> $GITHUB_ENV
 
       - name: Build and push Docker image
         uses: docker/build-push-action@v2
