@@ -45,7 +45,7 @@ jobs:
       - name: Checkout config repo
         uses: actions/checkout@v2
         with:
-          repository: nguyentinelong1106/VDT_Config_web
+          repository: nguyentienlong1106/VDT_Config_web
           ref: "main"
           token: ${{ secrets.G_TOKEN }}
 
