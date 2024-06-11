@@ -1,11 +1,11 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: web
+  name: {{ .Release.Name }}--web
   namespace: { { .Values.namespace } }
 spec:
   selector:
-    app: web
+    app: {{ .Release.Name }}--web
   ports:
     - protocol: TCP
       port: { { .Values.service.port } }
