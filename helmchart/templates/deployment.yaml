@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web
+  namespace: {{ .Values.namespace }}
+spec:
+  selector:
+    matchLabels:
+      app: web
+  replicas: {{ .Values.replicaCount }}
+  template:
+    metadata:
+      labels:
+        app: web
+    spec:
+      containers:
+        - name: web
+          image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
+          ports:
+            - containerPort: {{ .Values.service.port }}
+          env:
+            - name: REACT_APP_API_KEY
+              value: {{ .Values.env.REACT_APP_API_KEY | quote }}
