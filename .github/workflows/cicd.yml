@@ -55,7 +55,6 @@ jobs:
 
       - name: Commit and push changes
         run: |
-          cd config-repo
           git config --global user.name "nguyentienlong1106"
           git config --global user.email "tienlong1106@gmail.com"
           git add values.yaml
