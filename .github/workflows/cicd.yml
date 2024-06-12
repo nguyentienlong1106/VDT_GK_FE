@@ -20,13 +20,15 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_ACCESS_TOKEN }}
 
+      - name: Extract tag name
+        id: extract_tag
+        run: echo "TAG_NAME=${GITHUB_REF_NAME}" >> $GITHUB_ENV
+
       - name: Extract version from commit SHA
         id: vars
         run: echo "VERSION=${GITHUB_SHA::7}" >> $GITHUB_ENV
 
-      - name: Extract tag name
-        id: extract_tag
-        run: echo "TAG_NAME=${GITHUB_REF_NAME}" >> $GITHUB_ENV
+
 
       # - name: Build and push Docker image
       #   uses: docker/build-push-action@v2
