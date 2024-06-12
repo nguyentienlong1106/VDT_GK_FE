@@ -22,7 +22,7 @@ jobs:
 
       - name: Extract tag name
         id: extract_tag
-        run: echo "TAG_NAME=${GITHUB_REF_NAME}" >> $GITHUB_ENV
+        run: echo "TAG_NAME=${{github.ref_name}}" >> $GITHUB_ENV
 
       - name: Extract version from commit SHA
         id: vars
