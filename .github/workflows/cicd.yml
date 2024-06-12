@@ -48,7 +48,7 @@ jobs:
 
       - name: Update image tag in values.yaml
         run: |
-          sed -i 's/^  *tag:.*/tag: ${{ needs.push_to_registry.outputs.tag_name }}/g' values.yaml
+          sed -i 's/^  *tag:.*/  tag: ${{ needs.push_to_registry.outputs.tag_name }}/g' values.yaml
 
       - name: Commit and push changes
         run: |
