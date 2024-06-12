@@ -9,7 +9,8 @@ jobs:
     name: Push Docker image to Docker Hub
     runs-on: ubuntu-latest
     if: startsWith(github.ref, 'refs/tags/') # Only run on tag creation
-
+    outputs:
+      build_id: ${{ steps.extract_tag.outputs.TAG_NAME }}
     steps:
       - name: Check out the repo
         uses: actions/checkout@v2
@@ -47,7 +48,7 @@ jobs:
 
       - name: Update image tag in values.yaml
         run: |
-          sed -i 's/tag:*/tag:${{ needs.push_to_registry.outputs.TAG_NAME }}/g' values.yaml
+          sed -i 's/^ *tag:.*/tag: ${{ needs.push_to_registry.outputs.TAG_NAME }}/g' value.yaml
 
       - name: Commit and push changes
         run: |
